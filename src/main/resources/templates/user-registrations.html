@@ -1,0 +1,209 @@
+<!-- This is for list form -->
+<!-- <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrations - EventForge Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+body {
+  background-color: #121212;
+  color: #ddd;
+  font-family: Arial, sans-serif;
+}
+.container {
+  margin-top: 3rem;
+  animation: fadeSlideUp 0.8s ease forwards;
+}
+h1 {
+  color: #1e90ff;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #1e90ff;
+  padding-bottom: 0.5rem;
+}
+.table-container {
+  background: #1f1f1f;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.7);
+}
+/* Table styles matching users table */
+.table {
+  color: #e0e0e0;
+  background-color: #1c1c1c;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.table th {
+  color: #1e90ff;
+  background-color: #1f1f1f;
+  border-color: #2a2a2a;
+  font-weight: 600;
+}
+.table td {
+  color: #e0e0e0;
+  background-color: #1c1c1c;
+  border-color: #2a2a2a;
+}
+.table-hover tbody tr:hover {
+  background-color: #222;
+}
+/* Animations */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="logo">EventForge</div>
+  <ul class="nav-links">
+    <li><a th:href="@{/admin/home}">Dashboard</a></li>
+    <li><a th:href="@{/admin/users}">Users</a></li>
+    <li><a th:href="@{/landing/logout}">Logout</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1 th:text="'Registrations of ' + ${user.fullname}"></h1>
+  
+  <div class="table-container">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Organizer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="reg : ${registrations}">
+          <td th:text="${reg.eventDetails.name}"></td>
+          <td th:text="${reg.eventDetails.category}"></td>
+          <td th:text="${reg.eventDetails.date}"></td>
+          <td th:text="${reg.eventDetails.location}"></td>
+          <td th:text="${reg.eventDetails.organizer}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>   -->
+
+
+<!-- This is for card form -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrations - EventForge Admin</title>
+  <link rel="stylesheet" th:href="@{/css/navbar.css}">
+  <link rel="shortcut icon" href="/image/fevicon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+body {
+  background-color: #121212;
+  color: #ddd;
+  font-family: Arial, sans-serif;
+}
+.container {
+  margin-top: 3rem;
+  animation: fadeSlideUp 0.8s ease forwards;
+}
+h1 {
+  color: #1e90ff;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #1e90ff;
+  padding-bottom: 0.5rem;
+}
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.card {
+  background: #1f1f1f;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(30,144,255,0.3);
+}
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+.card-content {
+  padding: 1rem 1.25rem;
+}
+.card-content h5 {
+  color: #1e90ff;
+  margin-bottom: 0.75rem;
+}
+.card-content p {
+  margin: 0.25rem 0;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="logo">EventForge</div>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+  <ul class="nav-links">
+    <li><a th:href="@{/admin/home}">Dashboard</a></li>
+    <li><a th:href="@{/admin/users}">Users</a></li>
+    <li><a th:href="@{/landing/logout}">Logout</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1 th:text="'Registrations of ' + ${user.fullname}"></h1>
+  
+  <div class="cards-container">
+    <div class="card" th:each="reg : ${registrations}">
+      <img th:src="${reg.eventDetails.img}" alt="Event Image" />
+      <div class="card-content">
+        <h5 th:text="${reg.eventDetails.name}">Event Name</h5>
+        <p><strong>Category:</strong> <span th:text="${reg.eventDetails.category}"></span></p>
+        <p><strong>Date:</strong> <span th:text="${reg.eventDetails.date}"></span></p>
+        <p><strong>Location:</strong> <span th:text="${reg.eventDetails.location}"></span></p>
+        <p><strong>Organizer:</strong> <span th:text="${reg.eventDetails.organizer}"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

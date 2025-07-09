@@ -1,0 +1,52 @@
+ <!DOCTYPE html>
+ <html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Category</title>
+    <link rel="shortcut icon" href="/image/fevicon.png" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/category.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+ </head>
+<body>
+ <nav class="navbar">
+    <div class="logo">EventForge</div>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+    <ul class="nav-links">
+      <li><a th:href="@{/admin/home}">Home</a></li>
+      <li><a th:href="@{/landing/logout}">Logout</a></li>
+    </ul>
+  </nav>
+ 
+   <section class="category-content">
+ <!--  <h1>🎨 Art Exhibitions</h1> -->
+ 
+ <h2 th:text="'Category: ' + ${admincategory}"></h2>
+ 
+  <p>Discover the most exciting art exhibitions near you, from classical masterpieces to contemporary showcases.</p>
+	
+	<div th:if="${eventList == null or #lists.isEmpty(eventList)}">
+    <p class="no-data">No item found in this category</p>
+  </div>
+  
+  <div class="event-cards">
+    <div class="event-card" th:each="event : ${eventList}">
+      <!-- Image added here -->
+      <img th:src="${event.img}" alt="Modern Expressions Art Exhibition" class="event-image" />
+      
+      <h3 th:text="'Name: '+${event.name}"></h3>
+      <h4 th:text="'Location: ' + ${event.location}"></h4>
+      <div class="card-footer-custom">
+        <strong>Price ₹ : <span class="price-tag" th:text="${event.price}"></span></strong>
+        </div>
+      <div class="card-buttons">
+	  	<a th:href="@{'/event/edit/' + ${event.id}}" class="btn edit-btn">✏️ Edit</a>
+	  	<a th:href="@{'/event/delete/' + ${event.id}}" class="btn delete-btn">⛔ Delete</a>
+	  </div>
+
+    </div>
+  </div> 
+  </section>  
+ </body>
+ </html>

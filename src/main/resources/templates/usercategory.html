@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Category</title>
+   <link rel="shortcut icon" href="/image/fevicon.png" type="image/x-icon">
+   <link rel="stylesheet" th:href="@{/css/category.css}">
+   <link rel="stylesheet" th:href="@{/css/navbar.css}">
+   <style type="text/css">
+   .registered-ribbon {
+  position: absolute;
+  top: 20px;
+  right: -30px;
+  width: 150px;               /* Fixed width helps text centering on diagonal */
+  height: 30px;               /* Adjust height as needed */
+  background: cyan;
+  color: black;
+  display: flex;              /* Enables centering */
+  align-items: center;        /* Vertical center */
+  justify-content: center;    /* Horizontal center */
+  transform: rotate(45deg);
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+  z-index: 1;
+  pointer-events: none;
+}
+.event-card {
+  position: relative;
+  overflow: hidden;
+}
+
+
+   
+   </style>
+</head>
+<body>
+<nav class="navbar">
+   <div class="logo">EventForge</div>
+   <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+   <ul class="nav-links">
+     <li><a th:href="@{/user/home}">Home</a></li>
+     <li><a th:href="@{/user/profile}">Profile</a></li>
+   </ul>
+</nav>
+
+<section class="category-content">
+<h2 th:text="'Category: ' + ${category}"></h2>
+
+<p>Explore the coolest events nearby, whether you’re into tech, sports, or beyond.</p>
+
+<div th:if="${eventList == null or #lists.isEmpty(eventList)}">
+ <p class="no-data">No item found in this category</p>
+</div>
+
+<div class="event-cards">
+ <div class="event-card" th:each="event : ${eventList}">
+   <!-- Image -->
+   <img th:src="${event.img}" alt="Event Image" class="event-image" />
+   
+   <h3 th:text="'Name: ' + ${event.name}"></h3>
+   <h4 th:text="'Location: ' + ${event.location}"></h4>
+   <div class="card-footer-custom">
+     <strong>Price ₹ : <span class="price-tag" th:text="${event.price}"></span></strong>
+   </div>
+
+   <!-- NEW: Show REGISTERED tag if registered -->
+   <div th:if="${registeredEventIds != null and registeredEventIds.contains(event.id)}" class="registered-ribbon">
+  ✅ REGISTERED
+</div>
+
+
+   <div class="card-buttons">
+     <!-- View More always visible -->
+     <a th:href="@{'/event/view/' + ${event.id}}" class="btn edit-btn">
+       🔍 View More
+     </a>
+
+     <!-- Register button only if NOT registered -->
+     <a th:if="${registeredEventIds == null or !registeredEventIds.contains(event.id)}"
+        th:href="@{'/event/register/' + ${event.id}}" class="btn register-btn">
+       📝 Register Event
+     </a>
+     
+     <!-- use this to always show button even when use has registered -->
+  <!-- <a th:href="@{'/event/register/' + ${event.id}}" class="btn register-btn">
+	  📝 Register Event
+	</a>  -->   
+     
+   </div>
+ </div>
+</div>
+</section>
+
+</body>
+</html>

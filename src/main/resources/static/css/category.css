@@ -1,0 +1,131 @@
+/*body*/
+ body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .category-content {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .category-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .category-content p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .event-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .event-card {
+      background: #1f1f1f;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 280px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+      text-align: left;
+      transition: background 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .event-card:hover {
+      background: #272727;
+    }
+
+    .event-card h3 {
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-card p {
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    .event-card:nth-child(1) { animation-delay: 0.2s; }
+    .event-card:nth-child(2) { animation-delay: 0.4s; }
+    .event-card:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.card-buttons a {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-buttons .edit-btn {
+  background-color: #1e90ff;
+}
+
+.card-buttons .edit-btn:hover {
+  background-color: #0d6efd;
+}
+
+.card-buttons .delete-btn {
+  background-color: #dc3545;
+}
+
+.card-buttons .delete-btn:hover {
+  background-color: #c82333;
+}
+    
+
+/*cards*/
+.card-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.event-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+

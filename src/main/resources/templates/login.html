@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="/image/fevicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 740px;
+}
+
+.login-container {
+  background: #1f1f1f;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 25px;
+  font-size: 2rem;
+  color: #1e90ff;
+}
+
+.login-container .subtitle {
+  margin-bottom: 30px;
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.input-group label i {
+  margin-right: 0.5rem;
+  color: #1e90ff;
+}
+
+.input-group input {
+  width: 95%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
+  transition: 0.3s ease;
+}
+
+.input-group input:focus {
+  background: #1e90ff20;
+  box-shadow: 0 0 6px #1e90ff;
+  outline: none;
+}
+
+.glow-btn {
+  background-color: #1f1f1f;
+  color: #1e90ff;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border: 2px solid #1e90ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 8px #1e90ff66;
+}
+
+.glow-btn:hover {
+  background-color: #1e90ff;
+  color: #121212;
+  box-shadow: 0 0 20px #1e90ffaa;
+}
+
+.register-link {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.register-link a {
+  color: #1e90ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+        
+    </style>
+</head>
+<body>
+
+
+<div class="login-container">
+  <h2>Login to EventForge</h2>
+  <p class="subtitle">Welcome back! Please enter your credentials.</p>
+
+  <form th:action="@{/landing/login}" method="post">
+    <div class="input-group">
+      <label for="username"><i class="fas fa-user"></i> Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required />
+    </div>
+
+    <div class="input-group">
+      <label for="password"><i class="fas fa-lock"></i> Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required />
+    </div>
+
+    <button type="submit" class="glow-btn">Login</button>
+
+    <p class="register-link">Don't have an account? <a th:href="@{/landing/register}">Register</a></p>
+  </form>
+</div>
+
+</body>
+</html>

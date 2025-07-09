@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register to EventForge</title>
+  <link rel="shortcut icon" href="/image/fevicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px 0;
+    }
+
+    .login-container {
+      background: #1f1f1f;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      margin-bottom: 25px;
+      font-size: 2rem;
+      color: #1e90ff;
+    }
+
+    .login-container .subtitle {
+      margin-bottom: 30px;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+
+    .input-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .input-group label i {
+      margin-right: 0.5rem;
+      color: #1e90ff;
+    }
+
+    .input-group input {
+      width: 95%;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 8px;
+      background: #2a2a2a;
+      color: #fff;
+      font-size: 1rem;
+      box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
+      transition: 0.3s ease;
+    }
+
+    .input-group input:focus {
+      background: #1e90ff20;
+      box-shadow: 0 0 6px #1e90ff;
+      outline: none;
+    }
+
+    .input-group input.error {
+      border: 2px solid #ff4444;
+      background: #2a1a1a;
+    }
+
+    .error-message {
+      color: #ff4444;
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .general-error {
+      background: #2a1a1a;
+      color: #ff4444;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      border-left: 4px solid #ff4444;
+    }
+
+    .glow-btn {
+      background-color: #1f1f1f;
+      color: #1e90ff;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      border: 2px solid #1e90ff;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 8px #1e90ff66;
+      width: 100%;
+    }
+
+    .glow-btn:hover {
+      background-color: #1e90ff;
+      color: #121212;
+      box-shadow: 0 0 20px #1e90ffaa;
+    }
+
+    .register-link {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    .register-link a {
+      color: #1e90ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+    .validation-hint {
+      color: #888;
+      font-size: 0.8rem;
+      margin-top: 3px;
+      display: block;
+    }
+
+    .validation-hint.show {
+      color: #1e90ff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Register to EventForge</h2>
+  <p class="subtitle">Create your account to get started.</p>
+
+  <!-- Display general error message if any -->
+  <div th:if="${error}" class="general-error">
+    <span th:text="${error}"></span>
+  </div>
+
+  <form th:action="@{/landing/register}" th:object="${user}" method="post">
+    <div class="input-group">
+      <label for="fullname"><i class="fas fa-user"></i> Full Name</label>
+      <input type="text" 
+             id="fullname" 
+             th:field="*{fullname}" 
+             placeholder="Enter your full name" 
+             th:class="${#fields.hasErrors('fullname')} ? 'error' : ''" 
+             required />
+      <span th:if="${#fields.hasErrors('fullname')}" 
+            th:errors="*{fullname}" 
+            class="error-message"></span>
+      <small class="validation-hint">2-50 characters, letters and spaces only</small>
+    </div>
+    
+    <div class="input-group">
+      <label for="email"><i class="fas fa-envelope"></i> Email</label>
+      <input type="email" 
+             id="email" 
+             th:field="*{email}" 
+             placeholder="Enter your Gmail address (e.g., user@gmail.com)" 
+             pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
+             title="Only Gmail addresses are allowed (e.g., user@gmail.com)"
+             th:class="${#fields.hasErrors('email')} ? 'error' : ''" 
+             required />
+      <span th:if="${#fields.hasErrors('email')}" 
+            th:errors="*{email}" 
+            class="error-message"></span>
+      <small class="validation-hint">Only Gmail addresses are allowed (e.g., user@gmail.com)</small>
+    </div>
+
+    <div class="input-group">
+      <label for="username"><i class="fas fa-user-circle"></i> Username</label>
+      <input type="text" 
+             id="username" 
+             th:field="*{username}" 
+             placeholder="Enter your username" 
+             th:class="${#fields.hasErrors('username')} ? 'error' : ''" 
+             required />
+      <span th:if="${#fields.hasErrors('username')}" 
+            th:errors="*{username}" 
+            class="error-message"></span>
+      <small class="validation-hint">3-20 characters, letters, numbers, and underscores only</small>
+    </div>
+
+    <div class="input-group">
+      <label for="pass"><i class="fas fa-lock"></i> Password</label>
+      <input type="password" 
+             id="pass" 
+             th:field="*{pass}" 
+             placeholder="Enter your password" 
+             th:class="${#fields.hasErrors('pass')} ? 'error' : ''" 
+             required />
+      <span th:if="${#fields.hasErrors('pass')}" 
+            th:errors="*{pass}" 
+            class="error-message"></span>
+      <small class="validation-hint">Min 8 chars, must include: uppercase, lowercase, number, special character</small>
+    </div>
+
+    <button type="submit" onclick="sendEmailNotification()" class="glow-btn">Register</button>
+
+    <p class="register-link">Already have an account? <a th:href="@{/landing/login}">Login</a></p>
+  </form>
+</div>
+
+<script>
+  // Add real-time validation feedback
+  document.addEventListener('DOMContentLoaded', function() {
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('pass');
+    const usernameInput = document.getElementById('username');
+    const fullnameInput = document.getElementById('fullname');
+    
+    // Email validation - only Gmail allowed
+    emailInput.addEventListener('input', function() {
+      const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      if (this.value && !gmailRegex.test(this.value)) {
+        this.classList.add('error');
+        this.setCustomValidity('Only Gmail addresses are allowed (e.g., user@gmail.com)');
+      } else {
+        this.classList.remove('error');
+        this.setCustomValidity('');
+      }
+    });
+    
+    // Password validation
+    passwordInput.addEventListener('input', function() {
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      if (this.value && !passwordRegex.test(this.value)) {
+        this.classList.add('error');
+      } else {
+        this.classList.remove('error');
+      }
+    });
+    
+    // Username validation
+    usernameInput.addEventListener('input', function() {
+      const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+      if (this.value && !usernameRegex.test(this.value)) {
+        this.classList.add('error');
+      } else {
+        this.classList.remove('error');
+      }
+    });
+    
+    // Full name validation
+    fullnameInput.addEventListener('input', function() {
+      const fullnameRegex = /^[a-zA-Z\s]{2,50}$/;
+      if (this.value && !fullnameRegex.test(this.value)) {
+        this.classList.add('error');
+      } else {
+        this.classList.remove('error');
+      }
+    });
+  });
+  
+  const sendEmailNotification = () => {
+      const email = document.querySelector('input[name="email"]').value;
+     
+      fetch('http://localhost:8080/mail/sendEmail', {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email })
+      })
+      .then((response) => {
+      if (response.ok) {
+      console.log('Email sent successfully');
+      } else {
+      console.error('Failed to send email');
+      }
+      })
+      .catch((error) => {
+      console.error('Error sending email:', error);
+      });
+};
+
+</script>
+
+</body>
+</html>

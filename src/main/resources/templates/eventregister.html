@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register for Event | EventForge</title>
+  <link rel="shortcut icon" href="/image/fevicon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .register-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .register-card {
+      background: #1f1f1f;
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+      width: 100%;
+      max-width: 600px;
+      animation: slideUp 1s ease;
+    }
+
+    .register-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .register-card h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .register-card p {
+      font-size: 1rem;
+      color: #bbb;
+      margin-bottom: 2rem;
+    }
+
+    .event-info {
+      background: #2a2a2a;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      border-left: 4px solid #1e90ff;
+    }
+
+    .event-info h4 {
+      color: #1e90ff;
+      margin-bottom: 1rem;
+    }
+
+    .event-info p {
+      margin-bottom: 0.5rem;
+      color: #ddd;
+    }
+
+    .form-floating > .form-control,
+    .form-floating > .form-select {
+      background-color: #2a2a2a;
+      border: none;
+      color: #fff;
+    }
+
+    .form-floating > .form-control:focus,
+    .form-floating > .form-select:focus {
+      background-color: #1e90ff;
+      color: #fff;
+      box-shadow: 0 0 10px #1e90ff;
+    }
+
+    .form-floating label {
+      color: #ccc;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #1e90ff, #0d6efd);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-submit:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(30, 144, 255, 0.5);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Animate on load */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Fix floating label on select: float on focus */
+    .form-floating select:focus ~ label {
+      transform: scale(.85) translateY(-1.5rem) translateX(0.15rem);
+      opacity: 1;
+    }
+
+    /* Optional: make initial placeholder gray */
+    .form-select:required:invalid {
+      color: #6c757d;
+    }
+
+    .form-select option {
+      color: #000;
+    }
+
+    /* Style anchor like button */
+    .btn-link {
+      background: linear-gradient(135deg, #1e90ff, #0d6efd);
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+      border-radius: 10px;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 1rem;
+    }
+    .btn-link:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(30, 144, 255, 0.5);
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container register-container">
+  <div class="register-card">
+    <h2 class="text-center">Register for Event</h2>
+    <p class="text-center">Fill out the form below to secure your spot at this exciting event.</p>
+
+    <!-- Event Information Display -->
+    <div class="event-info">
+      <h4>Event Details</h4>
+      <p><strong>Event Name:</strong> <span th:text="${event.name}">Event Name</span></p>
+      <p><strong>Category:</strong> <span th:text="${event.category}">Category</span></p>
+      <p><strong>Location:</strong> <span th:text="${event.location}">Location</span></p>
+      <p><strong>Date:</strong> <span th:text="${event.date}">Date</span></p>
+      <p><strong>Price:</strong> ₹<span id="eventPrice" th:text="${event.price}">Price</span></p>
+      <p><strong>Organizer:</strong> <span th:text="${event.organizer}">Organizer</span></p>
+    </div>
+
+    <form method="POST" action="/event/submit">
+     <!-- hidden input for event id -->
+     <input type="hidden" name="eventId" th:value="${event.id}">
+     
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="FullName" placeholder="Full Name" name="FullName" required>
+        <label for="FullName">Full Name</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" required>
+        <label for="email">Email Address</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="tel" class="form-control" id="phone" placeholder="Phone Number" name="phone" required>
+        <label for="phone">Phone Number</label>
+      </div>
+
+      <!-- Pre-select the current event's category -->
+      <div class="form-floating mb-3">
+        <select class="form-select" id="event" name="event" required>
+          <option selected disabled value="">Select an Event</option>
+          <option value="Tech" th:selected="${event.category == 'Tech'}">Tech Events</option>
+          <option value="Cultural" th:selected="${event.category == 'Cultural'}">Cultural Events</option>
+          <option value="Social" th:selected="${event.category == 'Social'}">Social Events</option>
+          <option value="Sports" th:selected="${event.category == 'Sports'}">Sport Events</option>
+          <option value="Art" th:selected="${event.category == 'Art'}">Art Exhibition</option>
+          <option value="Music" th:selected="${event.category == 'Music'}">Music Events</option>
+        </select>
+        <label for="event">Event Category</label>
+      </div>
+
+      <div class="form-floating mb-4">
+        <textarea class="form-control" placeholder="Leave a message here" id="Msg" name="Msg" style="height: 100px"></textarea>
+        <label for="Msg">Additional Message (optional)</label>
+      </div>
+      
+      <div class="d-grid mb-3">
+        <a href="javascript:void(0);" class="btn-link" onclick="payNow()">Proceed to Pay</a>
+      </div>
+
+   <!-- <div class="d-grid">
+        <button type="submit" class="btn btn-submit">Submit Registration</button>
+      </div>  -->   
+    </form>
+  </div>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function payNow() {
+	  console.log("Proceed to Pay clicked");
+
+	  const priceElement = document.getElementById("eventPrice");
+	  if (!priceElement) {
+	    alert("Price element not found!");
+	    return;
+	  }
+
+	  const amount = parseFloat(priceElement.textContent.trim());
+	  if (isNaN(amount)) {
+	    alert("Invalid event amount");
+	    return;
+	  }
+
+	  fetch(`/getTransaction/${amount}`)
+	    .then(response => response.json())
+	    .then(data => {
+	      const options = {
+	        "key": data.key,
+	        "amount": data.amount,
+	        "currency": data.currency,
+	        "name": "EventForge",
+	        "description": "Event Registration",
+	        "order_id": data.orderId,
+	        "handler": function (response) {
+	          alert("✅ Payment Successful! Payment ID: " + response.razorpay_payment_id);
+	          // Optionally submit form after payment
+	          document.querySelector('form').submit();
+	        },
+	        "prefill": {
+	          "name": document.getElementById("FullName").value,
+	          "email": document.getElementById("email").value,
+	          "contact": document.getElementById("phone").value
+	        },
+	        "theme": {
+	          "color": "#0d6efd"
+	        }
+	      };
+	      const rzp = new Razorpay(options);
+	      rzp.open();
+	    })
+	    .catch(error => {
+	      console.error("Error fetching transaction details:", error);
+	      alert("❌ Failed to initiate payment. Please try again.");
+	    });
+	}
+
+</script>
+
+</body>
+</html>

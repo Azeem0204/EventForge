@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank You</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #bb86fc;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #bbb;
+    }
+    a {
+      margin-top: 2rem;
+      text-decoration: none;
+      color: #03dac6;
+      font-weight: bold;
+      border: 2px solid #03dac6;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    a:hover {
+      background-color: #03dac6;
+      color: #121212;
+    }
+  </style>
+</head>
+<body>
+  <h1>Thank You!</h1>
+  <p>Your registration has been successfully submitted.</p>
+  <a th:href="@{/event/}">Go to Home</a>
+</body>
+</html>

@@ -1,0 +1,117 @@
+/* /css/add.css */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top:50px;
+  margin-bottom:50px;
+}
+
+form {
+  background: #1f1f1f;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 500px;
+}
+
+form h2 {
+  text-align: center;
+  color: #1e90ff;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* .form-group input,
+.form-group textarea,
+.form-group select {
+  width: 95%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
+  transition: 0.3s ease;
+} */
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  background: #1e90ff20;
+  box-shadow: 0 0 6px #1e90ff;
+  outline: none;
+}
+
+.button-container {
+  text-align: center;
+}
+
+button {
+  background-color: #1f1f1f;
+  color: #1e90ff;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border: 2px solid #1e90ff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 8px #1e90ff66;
+}
+
+button:hover {
+  background-color: #1e90ff;
+  color: #121212;
+  box-shadow: 0 0 20px #1e90ffaa;
+}
+
+/* Normalize box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Shared styles for inputs, textarea, and select */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.6);
+  transition: 0.3s ease;
+  appearance: none; /* Prevent inconsistent browser styles */
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  background: #217185;
+  box-shadow: 0 0 6px #1e90ff;
+  outline: none;
+}
+

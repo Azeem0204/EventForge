@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EventForge - Event Details</title>
+  <link rel="shortcut icon" href="/image/fevicon.png" type="image/x-icon">
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* Reset & base */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #eee;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    a {
+      color: #1e90ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      color: #1e90ff;
+      margin-bottom: 0.3rem;
+    }
+    header p {
+      color: #aaa;
+      font-size: 1.1rem;
+    }
+
+    /* Event Image */
+    .event-image {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+      margin-bottom: 2rem;
+    }
+
+    /* Description */
+    .description {
+      font-size: 1.15rem;
+      color: #ccc;
+      margin-bottom: 3rem;
+    }
+
+    /* Info grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem 3rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 600px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .info-item {
+      background: #1f1f1f;
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #ddd;
+      font-size: 1.1rem;
+    }
+    .info-item i {
+      font-size: 1.8rem;
+      color: #1e90ff;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    /* Organizer with image */
+    .organizer {
+      gap: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    .organizer img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 8px #1e90ff;
+    }
+    .organizer-name {
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: #ddd;
+    }
+
+    /* Tickets */
+    .tickets p {
+      margin: 0.2rem 0;
+    }
+    .tickets span {
+      color: #1e90ff;
+      font-weight: 600;
+    }
+
+    /* Reviews */
+    .reviews {
+      background: #1f1f1f;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    }
+    .reviews h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: #1e90ff;
+      font-size: 1.6rem;
+      text-align: center;
+    }
+    .review-item {
+      border-top: 1px solid #3a3a3a;
+      padding: 0.8rem 0;
+      font-size: 1rem;
+      color: #bbb;
+    }
+    .review-item:first-child {
+      border-top: none;
+    }
+    .reviewer-name {
+      font-weight: 700;
+      color: #ddd;
+    }
+
+    /* Back button */
+    .back-link {
+      display: inline-block;
+      margin-top: 3rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      background: #1e90ff;
+      color: white;
+      padding: 0.75rem 1.8rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(30,144,255,0.6);
+      transition: background-color 0.3s ease;
+    }
+    .back-link:hover {
+      background-color: #0d6efd;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 th:text="'Category: ' + ${event.category}"></h1>
+    <p>Innovating your digital experience</p>
+  </header>
+
+  <img
+    th:src="${event.img}"
+    alt="Tech Conference"
+    class="event-image"
+  />
+
+  <p class="description" th:text="${event.description}"> </p>
+
+  <section class="info-grid">
+    <div class="info-item" >
+      <i class="fa-solid fa-calendar-days" >
+      </i>
+      <p th:text="${event.date}"></p>
+      <div>
+        
+      </div>
+    </div>
+
+    <div class="info-item">
+      <i class="fa-solid fa-location-dot"></i>
+      <div>
+        <strong>Location: </strong><br />
+      </div>
+      <p th:text="${event.location}"></p>
+    </div>
+
+    <div class="info-item organizer">
+      <i class="fa-solid fa-user-tie"></i>
+      <span class="organizer-name" th:text="${event.organizer}">EventForge Inc.</span>
+    </div>
+
+    <div class="info-item tickets">
+      <i class="fa-solid fa-ticket"></i>
+      <div>
+        <strong>Tickets: </strong><br />
+        Ticket Price: <span th:text="${event.price}"></span><br />
+        <em>Early bird discounts available!</em>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews">
+    <h2>Attendee Reviews</h2>
+    <div class="review-item">
+      <span class="reviewer-name">Alex P.:</span> “Amazing event! Learned so much and met incredible people.”
+    </div>
+    <div class="review-item">
+      <span class="reviewer-name">Samantha K.:</span> “Well organized, great speakers, and very welcoming atmosphere.”
+    </div>
+    <div class="review-item">
+      <span class="reviewer-name">Jamal R.:</span> “The workshops were hands-on and highly informative. Can’t wait for next year!”
+    </div>
+  </section>
+
+  <a th:href="@{/event/category(name=${event.category})}" class="back-link" aria-label="Back to Home">← Back</a>
+
+</body>
+</html>

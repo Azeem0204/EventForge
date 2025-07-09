@@ -1,0 +1,350 @@
+/* ================================
+   Base & Reset
+================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #fff;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #1e90ff;
+  text-decoration: underline;
+}
+
+
+
+/* ================================
+   Container & Layout (Flex)
+================================= */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  animation: fadeSlideUp 1s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1rem; /* gutter compensation */
+  margin-right: -1rem;
+}
+
+.col-md-4,
+.col-md-8 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 2rem;
+}
+
+.col-md-4 {
+  flex: 0 0 33.3333%;
+  max-width: 33.3333%;
+}
+
+.col-md-8 {
+  flex: 0 0 66.6667%;
+  max-width: 66.6667%;
+}
+
+@media (max-width: 900px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-4,
+  .col-md-8 {
+    max-width: 100%;
+    flex: 1 1 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+/* ================================
+   Cards
+================================= */
+.card {
+  background: #1f1f1f;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  color: #fff;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation-fill-mode: forwards;
+  animation-name: fadeSlideUp;
+  animation-duration: 0.8s;
+  animation-timing-function: ease;
+}
+
+.card:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.card:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.card:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+.card:hover {
+  background: #272727;
+  box-shadow: 0 10px 30px rgba(30, 144, 255, 0.6);
+  transform: translateY(-5px);
+  cursor: default;
+}
+
+/* ================================
+   Avatar
+================================= */
+.rounded-circle {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #1e90ff;
+  box-shadow: 0 0 12px rgba(30, 144, 255, 0.7);
+  animation: pulseGlow 3s infinite ease-in-out;
+  margin-bottom: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ================================
+   Text Elements
+================================= */
+h3, h4 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(20px);
+  animation-name: fadeSlideUp;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+h3 {
+  animation-delay: 0.6s;
+  text-align: center;
+}
+
+h4 {
+  animation-delay: 0.8s;
+  border-bottom: 2px solid #1e90ff;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Text-muted style */
+.text-see {
+  color: gray; /* much brighter */
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  opacity: 0;                /* start invisible for animation */
+  transform: translateY(20px); /* start below */
+  animation: fadeSlideUp 0.8s ease forwards;
+  animation-delay: 0.8s;
+}
+
+
+/* Buttons */
+.btn {
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 0.75rem 1.75rem;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(30, 144, 255, 0.5);
+  background-color: transparent;
+  border: 2px solid #1e90ff;
+  color: #1e90ff;
+}
+
+.btn:hover {
+  background-color: #1e90ff;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(30, 144, 255, 0.8);
+}
+
+/* ================================
+   Profile Details rows (flex)
+================================= */
+.row.mb-3 {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-sm-4 {
+  font-weight: 700;
+  color: #1e90ff;
+  flex: 0 0 33.3333%;
+  max-width: 33.3333%;
+  padding-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.col-sm-8 {
+  flex: 0 0 66.6667%;
+  max-width: 66.6667%;
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #ddd;
+}
+
+/* ================================
+   My Events List
+================================= */
+.list-group {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.list-group-item {
+  background: #2a2a2a;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;  /* event name left, button right */
+  align-items: center;
+  color: #ddd;
+  transition: background 0.3s ease;
+  cursor: pointer;
+  gap: 1rem; /* add a bit of space between text and button */
+}
+
+.list-group-item span {
+  flex-grow: 1; /* take all available space to push button right */
+  font-weight: 600;
+  font-size: 1rem;
+  color: #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-group-item .btn-outline-secondary {
+  border-color: #1e90ff;
+  color: #1e90ff;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  flex-shrink: 0; /* prevent shrinking */
+}
+
+.list-group-item .btn-outline-secondary:hover {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+/* ================================
+   Footer
+================================= */
+.footer {
+  background: #1f1f1f;
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid #2a2a2a;
+  margin-top: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation-name: fadeSlideUp;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+  color: #aaa;
+}
+
+.footer .social-icons {
+  margin-top: 1rem;
+}
+
+.footer .social-icons a {
+  color: #ccc;
+  margin: 0 0.75rem;
+  font-size: 1.3rem;
+  transition: color 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+  color: #1e90ff;
+}
+
+/* ================================
+   Animations
+================================= */
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(30, 144, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(30, 144, 255, 1);
+  }
+}

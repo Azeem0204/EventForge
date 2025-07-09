@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Event</title>
+  <link rel="shortcut icon" href="/image/fevicon.png" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/add.css}">
+</head>
+<body>
+
+  <form th:action="@{/event/submit-item}" method="POST">
+    <h2>Add Event</h2>
+
+	<div class="form-group">
+      <label for="img">🎉  Image URL:</label>
+      <input type="text" id="img" name="img" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="name">🎉 Event Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">📝 Description:</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="date">📅 Date & Time:</label>
+      <input type="text" id="date" name="date" required>
+    </div>
+
+    <div class="form-group">
+      <label for="location">📍 Location:</label>
+      <input type="text" id="location" name="location" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="price">💵 Ticket Price:</label>
+      <input type="number" id="price" name="price" min="0" required>
+    </div>
+
+    <div class="form-group">
+      <label for="category">📂 Category:</label>
+      <select id="category" name="category" required>
+        <option value="" disabled selected>Select a category</option>
+        <option value="Tech">Tech Events</option>
+        <option value="Cultural">Cultural Events</option>
+        <option value="Social">Social Events</option>
+        <option value="Sports">Sport Events</option>
+        <option value="Art">Art Exhibition</option>
+        <option value="Music">Music Events</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="organizer">📍 Organizer:</label>
+      <input type="text" id="organizer" name="organizer" required>
+    </div>
+
+    <div class="button-container">
+      <button type="submit">➕ Submit</button>
+    </div>
+  </form>
+
+</body>
+</html>
