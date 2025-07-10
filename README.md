@@ -40,8 +40,6 @@ Built with **Java Spring Boot**, **Thymeleaf**, **MySQL**, and **Bootstrap**, Ev
 
 ## 📸 Screenshots
 
-> *(Replace these with actual screenshots)*
-
 ![Home Page](https://github.com/user-attachments/assets/b418d399-ab5a-447c-8954-02f1fbd791c3)
 ![Event Details](https://github.com/user-attachments/assets/a413ae32-edcb-4ebb-b7ec-5c7acf6d3db6)
 ![Admin Dashboard](https://github.com/user-attachments/assets/f3c9233d-0f16-4c1c-90ad-7f631d2a2527)
