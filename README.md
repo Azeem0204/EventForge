@@ -7,7 +7,6 @@ Built with **Java Spring Boot**, **Thymeleaf**, **MySQL**, and **Bootstrap**, Ev
 ---
 
 ## 🚀 Features
-
 ✅ **Secure User and Admin Authentication**
 - Registration and login with password hashing.
 - Role-based access control for users and admins.
