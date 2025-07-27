@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Full</title>
+  <style>
+  	body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  animation: fadeInUp 1s ease forwards;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #ff4d4d;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(255, 77, 77, 0.6);
+}
+
+p {
+  font-size: 1.2rem;
+  color: #dcdcdc;
+  max-width: 600px;
+  margin: 0 1rem 2rem;
+  line-height: 1.6;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+a {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  background-color: #1e90ff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  box-shadow: 0 8px 15px rgba(30, 144, 255, 0.6);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+a:hover {
+  background-color: #3ea0ff;
+  box-shadow: 0 12px 25px rgba(30, 144, 255, 0.9);
+}
+
+/* Animations matching project */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  	
+  </style>
+</head>
+<body>
+  <h2>🚫 Registration Closed</h2>
+  <p>Sorry, this event has reached maximum capacity and cannot accept more registrations.</p>
+  <a th:href="@{'/event/category?name=' + ${category}}">🔙 Back to Category</a>
+
+</body>
+</html>

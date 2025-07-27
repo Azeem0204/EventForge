@@ -319,6 +319,14 @@
           <div class="col-sm-8" th:text="${user.email}">Email</div>
         </div>
         <div class="row mb-3">
+		<div class="col-sm-4 fw-bold">Phone Number</div>
+		  <div class="col-sm-8"
+		       th:text="${#strings.isEmpty(user.phoneNumber) ? 'Phone not available' : user.phoneNumber}">
+		    Phone not available
+		  </div>
+		</div>
+
+        <div class="row mb-3">
           <div class="col-sm-4 fw-bold">Role</div>
           <div class="col-sm-8" th:text="${user.role}">Role</div>
         </div>
@@ -425,6 +433,19 @@
             <label for="fullname" class="form-label">Full Name</label>
             <input type="text" name="fullname" th:value="${user.fullname}" class="form-control" id="fullname" required>
           </div>
+          <div class="mb-3">
+  
+  <label for="phoneNumber" class="form-label">Phone Number</label>
+  <input
+    type="tel"
+    name="phoneNumber"
+    th:value="${user.phoneNumber}"
+    class="form-control"
+    id="phoneNumber"
+    placeholder="Enter your phone number"
+  >
+</div>
+          
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" th:value="${user.email}" class="form-control" id="email" required>

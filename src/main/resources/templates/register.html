@@ -202,6 +202,23 @@
             class="error-message"></span>
       <small class="validation-hint">3-20 characters, letters, numbers, and underscores only</small>
     </div>
+    
+    <div class="input-group">
+	  <label for="phoneNumber"><i class="fas fa-phone"></i> Phone Number</label>
+	  <input type="text" 
+	         id="phoneNumber" 
+	         th:field="*{phoneNumber}" 
+	         placeholder="Enter your phone number"
+	         pattern="^[0-9]{10}$"
+	         title="Enter a valid 10-digit phone number"
+	         th:class="${#fields.hasErrors('phoneNumber')} ? 'error' : ''"
+	         required />
+	  <span th:if="${#fields.hasErrors('phoneNumber')}"
+	        th:errors="*{phoneNumber}"
+	        class="error-message"></span>
+	  <small class="validation-hint">10 digits only, numbers only (e.g., 9876543210)</small>
+	</div>
+    
 
     <div class="input-group">
       <label for="pass"><i class="fas fa-lock"></i> Password</label>
@@ -217,7 +234,7 @@
       <small class="validation-hint">Min 8 chars, must include: uppercase, lowercase, number, special character</small>
     </div>
 
-    <button type="submit" onclick="sendEmailNotification()" class="glow-btn">Register</button>
+    <button type="submit" class="glow-btn">Register</button> <!--  onclick="sendEmailNotification()" -->
 
     <p class="register-link">Already have an account? <a th:href="@{/landing/login}">Login</a></p>
   </form>
@@ -274,7 +291,7 @@
     });
   });
   
-  const sendEmailNotification = () => {
+ /* const sendEmailNotification = () => {
       const email = document.querySelector('input[name="email"]').value;
      
       fetch('http://localhost:8080/mail/sendEmail', {
@@ -294,7 +311,21 @@
       .catch((error) => {
       console.error('Error sending email:', error);
       });
-};
+}; */
+
+const phoneInput = document.getElementById('phoneNumber');
+phoneInput.addEventListener('input', function() {
+  const phoneRegex = /^[0-9]{10}$/;
+  if (this.value && !phoneRegex.test(this.value)) {
+    this.classList.add('error');
+    this.setCustomValidity('Enter a valid 10-digit phone number');
+  } else {
+    this.classList.remove('error');
+    this.setCustomValidity('');
+  }
+});
+
+
 
 </script>
 

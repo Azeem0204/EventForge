@@ -29,9 +29,9 @@
     </div>
 
     <div class="form-group">
-      <label for="date">📅 Date & Time:</label>
-      <input type="text" th:field="*{date}" required>
-    </div>
+  <label for="date">📅 Date & Time:</label>
+  <input type="datetime-local" th:field="*{date}" required>
+</div>
 
     <div class="form-group">
       <label for="location">📍 Location:</label>
@@ -42,6 +42,12 @@
       <label for="price">💵 Ticket Price:</label>
       <input type="number" th:field="*{price}" min="0" required>
     </div>
+    
+    <div class="form-group">
+	  <label for="maxQuantity">📦 Max Quantity:</label>
+	  <input type="number" th:field="*{maxQuantity}" min="1" required>
+	</div>
+    
 
     <div class="form-group">
       <label for="category">📂 Category:</label>

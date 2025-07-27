@@ -81,7 +81,9 @@ public class UserController {
 	    @RequestParam("username") String username,
 	    @RequestParam("fullname") String fullname,
 	    @RequestParam("email") String email,
+	    @RequestParam("phoneNumber") String phoneNumber,
 	    @RequestParam(value = "profileImage", required = false) MultipartFile profileImage,
+	    HttpSession session,
 	    RedirectAttributes redirectAttributes
 	) {
 	    try {
@@ -90,20 +92,27 @@ public class UserController {
 	        user.setUsername(username);
 	        user.setFullname(fullname);
 	        user.setEmail(email);
+	        user.setPhoneNumber(phoneNumber);
+
 
 	        if (profileImage != null && !profileImage.isEmpty()) {
 	            user.setProfileImage(profileImage.getBytes());
 	        }
 
+	        // Save updated user
 	        userRepo.save(user);
-	        redirectAttributes.addFlashAttribute("successMessage", "Profile updated successfully!");
 
+	        // 🔥 Refresh the session attribute so it has fresh data
+	        session.setAttribute("loggedUser", userRepo.findById(id).get());
+
+	        redirectAttributes.addFlashAttribute("successMessage", "Profile updated successfully!");
 	    } catch (Exception e) {
 	        redirectAttributes.addFlashAttribute("errorMessage", "Error updating profile: " + e.getMessage());
 	    }
 
 	    return "redirect:/user/profile";
 	}
+
 
 	@GetMapping("/profile/photo/{id}")
 	@ResponseBody

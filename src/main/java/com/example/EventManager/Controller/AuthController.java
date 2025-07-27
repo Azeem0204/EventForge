@@ -64,10 +64,16 @@ public class AuthController {
 			// ✅ Send welcome email here
 			try {
 				emailService.sendEmail(
-				user.getEmail(),
-				"Account created successfully!",
-				"Welcome to SYS Bank. Continue your bank journey... Thank you!"
-			    );
+					    user.getEmail(),
+					    "Welcome to EventForge!",
+					    "Hello " + user.getFullname() + ",\n\n"
+					    + "Your account has been created successfully.\n\n"
+					    + "You can now explore and register for the latest technology events, manage your preferences, and stay informed about upcoming opportunities.\n\n"
+					    + "Thank you for joining EventForge. We’re excited to have you onboard!\n\n"
+					    + "Best regards,\n"
+					    + "The EventForge Team"
+					);
+
 			} catch (Exception emailEx) {
 				emailEx.printStackTrace();
 				model.addAttribute("error", "Account created, but failed to send confirmation email.");

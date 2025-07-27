@@ -191,7 +191,14 @@
 
   <section class="landing">
     <div class="content">
-      <h1 th:text="${user != null ? 'Welcome to EventForge, ' + user.fullname : 'Welcome to EventForge'}"></h1>
+      <h1>
+  Welcome to EventForge
+  <span th:if="${user != null}">
+    ,<br>
+    <span th:text="${user.fullname}"></span>
+  </span>
+</h1>
+
       <p>Your ultimate platform to create, manage, and attend unforgettable events effortlessly. Join us and start forging your perfect event experience today!</p>
       <a href="#food"><button class="btn-primary">Get Started</button></a>
     </div>

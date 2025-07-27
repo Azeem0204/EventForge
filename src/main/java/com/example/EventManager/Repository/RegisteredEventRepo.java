@@ -12,4 +12,6 @@ import com.example.EventManager.Entity.UserEntity;
 public interface RegisteredEventRepo extends JpaRepository<RegisteredEvent, Integer> {
     
     List<RegisteredEvent> findByUser(UserEntity user);
+    
+    int countByEventDetailsId(int eventId);
 }

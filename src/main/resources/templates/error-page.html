@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EventForge | 500 Server Error</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+            color: #f0f0f0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .error-container {
+            background: #1c1c1e;
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            animation: fadeIn 1s ease forwards;
+            max-width: 600px;
+        }
+
+        .emoji {
+            font-size: 5rem;
+            margin-bottom: 15px;
+            animation: bounce 1.8s infinite;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #ff4c4c;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .home-btn {
+            padding: 12px 28px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px #007bff, 0 0 20px #007bff55;
+        }
+
+        .home-btn:hover {
+            background: #0056b3;
+            box-shadow: 0 0 12px #00bfff, 0 0 30px #00bfff88;
+            transform: translateY(-2px);
+        }
+
+        .message {
+            margin-top: 30px;
+            font-style: italic;
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .error-container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .emoji {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <div class="emoji">🚧</div>
+        <h1>Oops! Something went wrong on EventForge</h1>
+        <p>Something went wrong on our end. The EventForge team is working to fix it!</p>
+        <a href="/user/home" class="home-btn">Return to Home</a>
+        <div class="message" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+    </div>
+</body>
+</html>

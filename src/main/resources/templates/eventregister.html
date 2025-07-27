@@ -157,6 +157,7 @@
       color: white;
       text-decoration: none;
     }
+    
   </style>
 </head>
 <body>
@@ -179,36 +180,47 @@
 
     <form method="POST" action="/event/submit">
      <!-- hidden input for event id -->
-     <input type="hidden" name="eventId" th:value="${event.id}">
-     
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="FullName" placeholder="Full Name" name="FullName" required>
-        <label for="FullName">Full Name</label>
-      </div>
+      <input type="hidden" name="eventId" th:value="${event.id}">
 
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" required>
-        <label for="email">Email Address</label>
-      </div>
+  <!-- Full Name -->
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="FullName" name="FullName" th:value="${user.fullname}" disabled>
+    <label for="FullName">Full Name</label>
+    <input type="hidden" name="FullName" th:value="${user.fullname}">
+  </div>
 
-      <div class="form-floating mb-3">
-        <input type="tel" class="form-control" id="phone" placeholder="Phone Number" name="phone" required>
-        <label for="phone">Phone Number</label>
-      </div>
+  <!-- Email -->
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="email" name="email" th:value="${user.email}" disabled>
+    <label for="email">Email Address</label>
+    <input type="hidden" name="email" th:value="${user.email}">
+  </div>
+
+  <!-- Phone -->
+  <div class="form-floating mb-3">
+    <input type="tel"
+           class="form-control"
+           id="phone"
+           placeholder="Phone Number"
+           name="phone"
+           required>
+    <label for="phone">Phone Number</label>
+  </div>
 
       <!-- Pre-select the current event's category -->
       <div class="form-floating mb-3">
-        <select class="form-select" id="event" name="event" required>
-          <option selected disabled value="">Select an Event</option>
-          <option value="Tech" th:selected="${event.category == 'Tech'}">Tech Events</option>
-          <option value="Cultural" th:selected="${event.category == 'Cultural'}">Cultural Events</option>
-          <option value="Social" th:selected="${event.category == 'Social'}">Social Events</option>
-          <option value="Sports" th:selected="${event.category == 'Sports'}">Sport Events</option>
-          <option value="Art" th:selected="${event.category == 'Art'}">Art Exhibition</option>
-          <option value="Music" th:selected="${event.category == 'Music'}">Music Events</option>
-        </select>
-        <label for="event">Event Category</label>
-      </div>
+  <select class="form-select" id="event" name="event" disabled>
+    <option selected disabled value="">Select an Event</option>
+    <option value="Tech" th:selected="${event.category == 'Tech'}">Tech Events</option>
+    <option value="Cultural" th:selected="${event.category == 'Cultural'}">Cultural Events</option>
+    <option value="Social" th:selected="${event.category == 'Social'}">Social Events</option>
+    <option value="Sports" th:selected="${event.category == 'Sports'}">Sport Events</option>
+    <option value="Art" th:selected="${event.category == 'Art'}">Art Exhibition</option>
+    <option value="Music" th:selected="${event.category == 'Music'}">Music Events</option>
+  </select>
+  <label for="event">Event Category</label>
+</div>
+
 
       <div class="form-floating mb-4">
         <textarea class="form-control" placeholder="Leave a message here" id="Msg" name="Msg" style="height: 100px"></textarea>

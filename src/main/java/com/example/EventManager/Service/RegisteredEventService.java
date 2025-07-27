@@ -46,5 +46,11 @@ public class RegisteredEventService {
         return registeredEventRepo.findByUser(user);
     }
 
+    public int countByEventId(int eventId) {
+        return registeredEventRepo.countByEventDetailsId(eventId);
+    }
+
+
+
 
 }
