@@ -50,6 +50,10 @@ public class RegisteredEventService {
         return registeredEventRepo.countByEventDetailsId(eventId);
     }
 
+	public List<RegisteredEvent> getRegisteredUsersByEventId(int eventId) {
+		return registeredEventRepo.findByEventDetailsId(eventId);
+	}
+
 
 
 

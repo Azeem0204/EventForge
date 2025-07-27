@@ -273,6 +273,16 @@ public class EventController {
 
 	
 
+	@GetMapping("/registrations/{id}")
+	public String viewRegistrations(@PathVariable("id") int id, Model model) {
+	    EventManager event = es.ViewEvent(id);
+	    List<RegisteredEvent> registrations = rs.getRegisteredUsersByEventId(id); // This must exist in your service
+
+	    model.addAttribute("event", event);
+	    model.addAttribute("registrations", registrations);
+	    return "registrations"; // You'll create this HTML
+	}
+
 
 
 

@@ -9,50 +9,262 @@
     <link rel="stylesheet" th:href="@{/css/category.css}">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
     <style>
-        /* Modal background */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+    body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+    
+  /* ========== Layout ========== */
 
-        /* Modal content box */
-        .modal-content {
-            background-color: #1f1f1f;
-            color: #e8f0fe;
-            /* <-- Ensures readable text */
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
+.category-content {
+  margin-top: 2rem;
+  padding: 0 2vw;
+  text-align: center;
+}
 
-        /* Buttons inside modal */
-        .modal-buttons button {
-            margin: 0 10px;
-            padding: 8px 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-        }
+.category-content h2 {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+}
 
-        #confirmYes {
-            background-color: #e74c3c;
-            color: white;
-        }
+.category-content > p {
+  margin: 0.3rem auto 1.2rem;
+  font-size: 1rem;
+  color: #cccccc;
+  max-width: 600px;
+  line-height: 1.6;
+}
 
-        #confirmNo {
-            background-color: #bdc3c7;
-            color: #333;
-        }
+.no-data {
+  font-style: italic;
+  margin-top: 1.2rem;
+  color: #aaaaaa;
+  font-size: 1rem;
+}
+
+/* ========== Cards Layout ========== */
+
+.event-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.event-card {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 280px;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.event-card:hover {
+  background-color: #222;
+}
+
+.event-image {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 0.8rem;
+}
+
+.event-card h3 {
+  margin: 0.3rem 0 0.2rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #e8e8e8;
+  letter-spacing: 0.4px;
+}
+
+.event-card h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #bbbbbb;
+  font-style: italic;
+}
+
+.event-card p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: #cccccc;
+  line-height: 1.5;
+}
+
+.event-card p strong,
+.card-footer-custom,
+.card-footer-custom strong {
+  font-weight: 300 !important;   /* Prevent unwanted bolding */
+  color: #dddddd;
+}
+
+.price-tag {
+  font-weight: 300;
+  color: #ffffff;
+}
+
+
+.card-footer-custom {
+  margin-top: 0.8rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid #333;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.price-label {
+  font-weight: 600;   /* Bold only this */
+}
+
+.price-tag {
+  font-weight: 400;   /* Normal weight */
+  color: #dddddd;
+}
+
+
+/* ========== Price & Footer ========== */
+
+.card-footer-custom {
+  margin-top: 0.6rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* ========== Buttons ========== */
+
+.card-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Ensure buttons have equal size and spacing */
+.card-buttons .btn {
+  flex: 1 1 45%;
+  max-width: 140px;
+  min-width: 120px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* View Registrants should be full width */
+.card-buttons .view-btn {
+  flex: 1 1 100%;
+  max-width: 300px;
+  margin-top: 0.3rem;
+}
+
+/* Button colors */
+.edit-btn { background-color: #f39c12; }
+.edit-btn:hover { background-color: #e67e22; }
+
+.delete-btn { background-color: #e74c3c; }
+.delete-btn:hover { background-color: #c0392b; }
+
+.view-btn { background-color: #2ecc71; }
+.view-btn:hover { background-color: #27ae60; }
+
+/* 📱 Mobile responsive */
+@media (max-width: 600px) {
+  .card-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card-buttons .btn {
+    width: 100%;
+    max-width: none;
+  }
+
+  .card-buttons .view-btn {
+    margin-top: 0.5rem;
+  }
+}
+
+/* ========== Modal ========== */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #1f1f1f;
+  color: #e8f0fe;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.modal-buttons button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+#confirmYes {
+  background-color: #e74c3c;
+  color: white;
+}
+
+#confirmNo {
+  background-color: #bdc3c7;
+  color: #333;
+}
+
+/* ========== Responsive Buttons (Only change) ========== */
+
+@media (max-width: 600px) {
+  .event-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .event-card {
+    width: 90%;
+  }
+
+  .card-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card-buttons .btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+    
     </style>
 
 </head>
@@ -85,14 +297,16 @@
                 <h3 th:text="'Name: ' + ${event.name}"></h3>
                 <h4 th:text="'Location: ' + ${event.location}"></h4>
                 
-                <p><strong>📦 Max Quantity:</strong> <span th:text="${event.maxQuantity}"></span></p>
+                <p><strong>📦 Max Slots:</strong> <span th:text="${event.maxQuantity}"></span></p>
                 <p><strong>👥 Registered Users:</strong> <span th:text="${registeredCountMap[event.id]}"></span></p>
 				<p><strong>🟢 Remaining Slots:</strong> <span th:text="${remainingSlotsMap[event.id]}"></span></p>
 
                 
                 <div class="card-footer-custom">
-                    <strong>Price ₹ : <span class="price-tag" th:text="${event.price}"></span></strong>
-                </div>
+  <span class="price-label">Price ₹ :</span>
+  <span class="price-tag" th:text="${event.price}"></span>
+</div>
+
                 <div class="card-buttons">
                     <a th:href="@{'/event/edit/' + ${event.id}}" class="btn edit-btn">✏️ Edit</a>
                     <a href="#" class="btn delete-btn confirm-delete"
@@ -100,6 +314,10 @@
                         ⛔ Delete
                     </a>
 
+                </div>
+               
+                <div class="card-buttons">
+                	<a th:href="@{'/event/registrations/' + ${event.id}}" class="btn view-btn">👤 View Registrants</a>
                 </div>
             </div>
     </section>

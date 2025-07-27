@@ -14,4 +14,6 @@ public interface RegisteredEventRepo extends JpaRepository<RegisteredEvent, Inte
     List<RegisteredEvent> findByUser(UserEntity user);
     
     int countByEventDetailsId(int eventId);
+
+	List<RegisteredEvent> findByEventDetailsId(int eventId);
 }
