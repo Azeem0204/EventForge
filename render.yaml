@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: EventForge
+    plan: free
+    buildCommand: "./mvnw clean package -DskipTests"
+    startCommand: "	java -jar target/EventManager-0.0.1-SNAPSHOT.jar"
+    envVars:
+      - key: JAVA_VERSION
+        value: 21
