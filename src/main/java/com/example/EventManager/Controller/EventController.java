@@ -231,44 +231,45 @@ public class EventController {
 
 	    // Get the actual event details
 	    EventManager eventDetails = es.ViewEvent(eventId);
-	    
+
 	    // Check if event is full
 	    int registeredCount = rs.countByEventId(eventId);
 	    int remainingSlots = eventDetails.getMaxQuantity() - registeredCount;
 	    if (remainingSlots <= 0) {
 	        model.addAttribute("error", "Sorry, this event is already full.");
-	        model.addAttribute("category", eventDetails.getCategory()); // ✅ This is good
+	        model.addAttribute("category", eventDetails.getCategory());
 	        return "full";
 	    }
-
 
 	    // Proceed with registration
 	    events.setUser(user);
 	    events.setEventDetails(eventDetails);
 	    rs.saveRegistration(events);
 
-	    // Send confirmation email
-	    try {
-	        String toEmail = user.getEmail();
-	        String subject = "Event Registration Confirmation";
-	        String message = "Dear " + user.getFullname() + ",\n\n"
-	                + "You have successfully registered for the event:\n\n"
-	                + "Event: " + eventDetails.getName() + "\n"
-	                + "Category: " + eventDetails.getCategory() + "\n"
-	                + "Date: " + eventDetails.getDate() + "\n"
-	                + "Location: " + eventDetails.getLocation() + "\n\n"
-	                + "Thank you for registering!\n\n"
-	                + "Best regards,\nEvent Management Team";
-	        
-	        emailService.sendEmail(toEmail, subject, message);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        model.addAttribute("error", "Registration saved but failed to send confirmation email.");
-	    }
+	    // ✅ Send confirmation email in try-catch, but ignore failure
+	    new Thread(() -> {
+	        try {
+	            String toEmail = user.getEmail();
+	            String subject = "Event Registration Confirmation";
+	            String message = "Dear " + user.getFullname() + ",\n\n"
+	                    + "You have successfully registered for the event:\n\n"
+	                    + "Event: " + eventDetails.getName() + "\n"
+	                    + "Category: " + eventDetails.getCategory() + "\n"
+	                    + "Date: " + eventDetails.getDate() + "\n"
+	                    + "Location: " + eventDetails.getLocation() + "\n\n"
+	                    + "Thank you for registering!\n\n"
+	                    + "Best regards,\nEvent Management Team";
 
-	    // Redirect to category view
+	            emailService.sendEmail(toEmail, subject, message);
+	        } catch (Exception e) {
+	            e.printStackTrace(); // Log error but don't block redirect
+	        }
+	    }).start();
+
+	    // Redirect immediately after saving registration
 	    return "redirect:/event/category?name=" + eventDetails.getCategory();
 	}
+
 
 
 	
