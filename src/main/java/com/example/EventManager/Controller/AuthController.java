@@ -77,7 +77,7 @@ public class AuthController {
 			} catch (Exception emailEx) {
 				emailEx.printStackTrace();
 				model.addAttribute("error", "Account created, but failed to send confirmation email.");
-				return "Bank_register"; // Optional: redirect anyway or show success
+				return "register"; // Optional: redirect anyway or show success
 			}
 			
 			return "redirect:/landing/login";
